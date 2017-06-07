@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-graphql",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Convert graphql files to ES6 modules",
   "main": "dist/rollup-plugin-graphql.cjs.js",
   "module": "dist/rollup-plugin-graphql.es.js",
