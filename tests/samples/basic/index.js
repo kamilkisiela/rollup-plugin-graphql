@@ -1,3 +1,5 @@
 import doc from './basic.graphql';
 
-export { doc };
+export {
+  doc
+};
