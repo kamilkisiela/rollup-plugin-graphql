@@ -1,6 +1,6 @@
 # rollup-plugin-json changelog
 
-## NEXT
+## 0.1.0
 
 - Use `graphql-tag/loader` directly [PR #3](https://github.com/kamilkisiela/rollup-plugin-graphql/pull/3)
 
