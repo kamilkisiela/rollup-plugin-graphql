@@ -1,5 +1,7 @@
-const { createFilter } = require('rollup-pluginutils');
-const gql = require('graphql-tag');
+import { createFilter } from 'rollup-pluginutils';
+import loader from 'graphql-tag/loader';
+
+import toESModules from './toESModules';
 
 export default function graphql (options = {}) {
 	// path filter
@@ -10,23 +12,13 @@ export default function graphql (options = {}) {
 	return {
 		name: 'graphql',
 		transform (source, id) {
-			// filters
 			if (!filter(id)) return null;
 			if (!filterExt.test(id)) return null;
 
-			// parse it
-			const doc = gql(source);
+			// XXX: this.cachable() in graphql-tag/loader
+			const code = toESModules(loader.call({cacheable () {}}, source));
 
-			// result
-			const code = `
-				const doc = ${JSON.stringify(doc)};
-				doc.loc.source = ${JSON.stringify(doc.loc.source)};
-				export default doc;
-  		`;
-			const result = { code };
-
-			// return it
-			return result;
+			return { code };
 		}
 	};
 }
