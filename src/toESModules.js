@@ -1,6 +1,8 @@
-import { EOL } from 'os';
+import {
+  EOL
+} from 'os';
 
-export default function (source) {
+export default function(source) {
   if (typeof source !== "string") {
     return source;
   }
@@ -15,15 +17,15 @@ function replaceModuleExports(source) {
 function replaceRequires(source) {
   const imports = {};
   let index = 0;
-  
+
   // replace a require statement with a variable
   source = source.replace(/require\(([^)]+)\)/ig, (match, path) => {
     path = path.replace(/[\"\']+/g, '');
-    
+
     if (!imports[path]) {
       imports[path] = `frgmt${++index}`;
     }
-    
+
     return imports[path];
   });
 

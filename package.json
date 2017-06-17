@@ -28,6 +28,7 @@
   "scripts": {
     "test": "jest",
     "pretest": "npm run build",
+    "posttest": "npm run lint",
     "build": "rollup -c",
     "prebuild": "rm -rf dist/*",
     "prepublish": "npm test",
