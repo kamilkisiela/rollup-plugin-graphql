@@ -20,8 +20,11 @@ export default function graphql({ include, exclude } = {}) {
         cacheable() { }
       }, source));
 
+      const map = { mappings: '' };
+
       return {
-        code
+        code,
+        map
       };
     }
   };
