@@ -1,5 +1,1 @@
-import doc from './basic.graphql';
-
-export {
-  doc
-};
+export { default as doc } from './basic.graphql';

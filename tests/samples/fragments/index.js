@@ -1,5 +1,1 @@
-import doc from './allHeroesQuery.graphql';
-
-export {
-  doc
-};
+export { default as doc } from './allHeroesQuery.graphql';

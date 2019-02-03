@@ -11,7 +11,9 @@ export default function(source) {
 }
 
 function replaceModuleExports(source) {
-  return source.replace('module.exports = doc', 'export default doc');
+  return source
+    .replace('module.exports = doc', 'export default doc')
+    .replace(/module\.exports\["(.*)"] = oneQuery\(doc, "(.*)"\)/, (match, g1, g2) => `export const ${g1} = oneQuery(doc, "${g2}")`);
 }
 
 function replaceRequires(source) {
@@ -20,7 +22,7 @@ function replaceRequires(source) {
 
   // replace a require statement with a variable
   source = source.replace(/require\(([^)]+)\)/ig, (match, path) => {
-    path = path.replace(/[\"\']+/g, '');
+    path = path.replace(/["']+/g, '');
 
     if (!imports[path]) {
       imports[path] = `frgmt${++index}`;
